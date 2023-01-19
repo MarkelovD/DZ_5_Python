@@ -56,30 +56,60 @@
 
 # задача с конфетами 
 
-candy = 221
-limit = 28
-user1_name = input("введите имя первого игрока: ")
-user2_name = input("введите имя второго игрока: ")
-while candy>0:
-   valid_user_1 = False
-   while not valid_user_1:
-      user1_candy = int(input(f"{user1_name}_введите количесто вонфет которое возбмете: "))
-      if user1_candy<=candy and 1<=user1_candy<=limit:
-         candy=candy-user1_candy
-         valid_user_1=True
-      else:
-         print("повторите")
-      if candy == 0:
-         print(user1_name + " WiN")
-   print("осталось конфет "+str(candy))
-   valid_user_2 = False
-   while not valid_user_2:
-      user2_candy = int(input(f"{user2_name}_введите количесто вонфет которое возбмете: "))
-      if user2_candy<=candy and 1<=user2_candy<=limit:
-         candy=candy-user2_candy
-         valid_user_2=True
-      else:
-         print("повторите")
-      if candy == 0:
-         print(user2_name + " WiN")
-   print("осталось конфет "+str(candy))
+# candy = 221
+# limit = 28
+# user1_name = input("введите имя первого игрока: ")
+# user2_name = input("введите имя второго игрока: ")
+# while candy>0:
+#    valid_user_1 = False
+#    while not valid_user_1:
+#       user1_candy = int(input(f"{user1_name}_введите количесто вонфет которое возбмете: "))
+#       if user1_candy<=candy and 1<=user1_candy<=limit:
+#          candy=candy-user1_candy
+#          valid_user_1=True
+#       else:
+#          print("повторите")
+#       if candy == 0:
+#          print(user1_name + " WiN")
+#    print("осталось конфет "+str(candy))
+#    valid_user_2 = False
+#    while not valid_user_2:
+#       user2_candy = int(input(f"{user2_name}_введите количесто вонфет которое возбмете: "))
+#       if user2_candy<=candy and 1<=user2_candy<=limit:
+#          candy=candy-user2_candy
+#          valid_user_2=True
+#       else:
+#          print("повторите")
+#       if candy == 0:
+#          print(user2_name + " WiN")
+#    print("осталось конфет "+str(candy))
+
+def coding(txt):
+    count = 1
+    res = ''
+    for i in range(len(txt)-1):
+        if txt[i] == txt[i+1]:
+            count += 1
+        else:
+            res = res + str(count) + txt[i]
+            count = 1
+    if count > 1 or (txt[len(txt)-2] != txt[-1]):
+        res = res + str(count) + txt[-1]
+    return res
+
+
+def decoding(txt):
+    number = ''
+    res = ''
+    for i in range(len(txt)):
+        if not txt[i].isalpha():
+            number += txt[i]
+        else:
+            res = res + txt[i] * int(number)
+            number = ''
+    return res
+
+
+s = input("Введите текст для кодировки: ")
+print(f"Текст после кодировки: {coding(s)}")
+print(f"Текст после дешифровки: {decoding(coding(s))}")
